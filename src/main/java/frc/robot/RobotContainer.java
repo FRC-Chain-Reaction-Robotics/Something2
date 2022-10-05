@@ -70,6 +70,13 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new exampleAuto(s_Swerve);
+    // return new exampleAuto(s_Swerve);
+    return new TeleopSwerve(
+      s_Swerve,
+      () -> 0.2,  //  TODO: how fast to move forward in auto
+      () -> 0,
+      () -> 0,
+      () -> false)
+      .withTimeout(7);  //  TODO: how long to move forward in auto
   }
 }

@@ -34,11 +34,11 @@ public class TeleopSwerve extends CommandBase {
   public void execute() {
     /* Get Values, Deadband*/
     double translationVal =
-        MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.stickDeadband) * 0.5;
+        MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.stickDeadband);  //  Removed the 50% speed cap ;)
     double strafeVal =
-        MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.stickDeadband) * 0.5;
+        MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.stickDeadband);
     double rotationVal =
-        MathUtil.applyDeadband(rotationSup.getAsDouble(), Constants.stickDeadband) * 0.5;
+        MathUtil.applyDeadband(rotationSup.getAsDouble(), Constants.stickDeadband);
 
     /* Drive */
     s_Swerve.drive(
