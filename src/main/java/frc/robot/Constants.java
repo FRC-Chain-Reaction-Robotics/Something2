@@ -66,68 +66,56 @@ public final class Constants {
     /* Module Specific Constants */
     /* Front Left Module - Module 0 */
     public static final class Mod0 {
-<<<<<<< HEAD
-      public static final int driveMotorID = 5;
-      public static final int angleMotorID = 8;
+      public static final int driveMotorID = 8;
+      public static final int angleMotorID = 5;
       public static final int canCoderID = 1;
       public static final double angleOffset = 144.22;
-=======
-      public static final int driveMotorID = 8; //  TODO: verify ID that the drive and angle motors are correct; Left is drive and Right is angle
-      public static final int angleMotorID = 5; //  TODO: verify ID
-      public static final int canCoderID = 1; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      public static final double angleOffset = 144.22;  //  TODO: change offset (Wait for Josh)
->>>>>>> f7d9028c4200a47c7934074d631da96a90d0d20a
+      // public static final int driveMotorID = 8; //  TODO: verify ID that the drive and angle motors are correct; Left is drive and Right is angle
+      // public static final int angleMotorID = 5; //  TODO: verify ID
+      // public static final int canCoderID = 1; //  TODO: verify CANCoder ID (May have to wait for Josh)
+      // public static final double angleOffset = 144.22;  //  TODO: change offset (Wait for Josh)
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
 
     /* Front Right Module - Module 1 */
     public static final class Mod1 {
-<<<<<<< HEAD
-      public static final int driveMotorID = 2;
-      public static final int angleMotorID = 4;
+      public static final int driveMotorID = 4;
+      public static final int angleMotorID = 2;
       public static final int canCoderID = 2;
       public static final double angleOffset = 109.07;
-=======
-      public static final int driveMotorID = 4; //  TODO: verify ID
-      public static final int angleMotorID = 2; //  TODO: verify ID
-      public static final int canCoderID = 2; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      public static final double angleOffset = 109.07;  //  TODO: change offset (Wait for Josh)
->>>>>>> f7d9028c4200a47c7934074d631da96a90d0d20a
+      // public static final int driveMotorID = 4; //  TODO: verify ID
+      // public static final int angleMotorID = 2; //  TODO: verify ID
+      // public static final int canCoderID = 2; //  TODO: verify CANCoder ID (May have to wait for Josh)
+      // public static final double angleOffset = 109.07;  //  TODO: change offset (Wait for Josh)
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
 
     /* Back Left Module - Module 2 */
     public static final class Mod2 {
-<<<<<<< HEAD
-      public static final int driveMotorID = 1;
-      public static final int angleMotorID = 10;
+      public static final int driveMotorID = 10;
+      public static final int angleMotorID = 1;
       public static final int canCoderID = 3;
       public static final double angleOffset = 326.07;
-=======
-      public static final int driveMotorID = 10;  //  TODO: verify ID
-      public static final int angleMotorID = 1; //  TODO: verify ID
-      public static final int canCoderID = 3; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      public static final double angleOffset = 326.07;  //  TODO: change offset (Wait for Josh)
->>>>>>> f7d9028c4200a47c7934074d631da96a90d0d20a
+      // public static final int driveMotorID = 10;  //  TODO: verify ID
+      // public static final int angleMotorID = 1; //  TODO: verify ID
+      // public static final int canCoderID = 3; //  TODO: verify CANCoder ID (May have to wait for Josh)
+      // public static final double angleOffset = 326.07;  //  TODO: change offset (Wait for Josh)
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
 
     /* Back Right Module - Module 3 */
     public static final class Mod3 {
-<<<<<<< HEAD
-      public static final int driveMotorID = 3;
-      public static final int angleMotorID = 7;
+      public static final int driveMotorID = 7;
+      public static final int angleMotorID = 3;
       public static final int canCoderID = 4;
       public static final double angleOffset = 157.76;
-=======
-      public static final int driveMotorID = 7; //  TODO: verify ID
-      public static final int angleMotorID = 3; //  TODO: verify ID
-      public static final int canCoderID = 4; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      public static final double angleOffset = 157.76;  //  TODO: change offset (Wait for Josh)
->>>>>>> f7d9028c4200a47c7934074d631da96a90d0d20a
+      // public static final int driveMotorID = 7; //  TODO: verify ID
+      // public static final int angleMotorID = 3; //  TODO: verify ID
+      // public static final int canCoderID = 4; //  TODO: verify CANCoder ID (May have to wait for Josh)
+      // public static final double angleOffset = 157.76;  //  TODO: change offset (Wait for Josh)
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
