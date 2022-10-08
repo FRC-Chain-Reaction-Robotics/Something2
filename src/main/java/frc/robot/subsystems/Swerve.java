@@ -50,20 +50,17 @@ public class Swerve extends SubsystemBase {
 								? ChassisSpeeds.fromFieldRelativeSpeeds(
 										translation.getX(), translation.getY(), rotation, getYaw())
 								: new ChassisSpeeds(translation.getX(), translation.getY(), rotation));
-		SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
-
-		for (SwerveModule mod : mSwerveMods) {
-			mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
-		}
+		
+		setModuleStates(swerveModuleStates, isOpenLoop);
 	}
 
 	/* Used by SwerveControllerCommand in Auto */
-	public void setModuleStates(SwerveModuleState[] desiredStates) {
+	public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop) {
 		SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.Swerve.maxSpeed);
 
 		for (SwerveModule mod : mSwerveMods) {
-			mod.setDesiredState(desiredStates[mod.moduleNumber], false);
-		}
+			mod.setDesiredState(desiredStates[mod.moduleNumber], isOpenLoop);
+		};
 	}
 
 	public Pose2d getPose() {
@@ -100,7 +97,7 @@ public class Swerve extends SubsystemBase {
 
 		for (SwerveModule mod : mSwerveMods) {
 			SmartDashboard.putNumber(
-					"Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
+					"Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees() % 180);
 			SmartDashboard.putNumber(
 					"Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
 			SmartDashboard.putNumber(

@@ -34,7 +34,7 @@ public final class Constants {
     public static final int driveContinuousCurrentLimit = 30;
 
     /* Angle Motor PID Values */
-    public static final double angleKP = 0.99;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
+    public static final double angleKP = 1.00;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
     public static final double angleKI = 0.0;
     public static final double angleKD = 0.0;
 
@@ -70,7 +70,7 @@ public final class Constants {
       public static final int driveMotorID = 8;
       public static final int angleMotorID = 5;
       public static final int canCoderID = 14;  //  configured
-      public static final double angleOffset = 11.514;
+      public static final double angleOffset = 39.550;
       // public static final int driveMotorID = 8; //  TODO: verify ID that the drive and angle motors are correct; Left is drive and Right is angle
       // public static final int angleMotorID = 5; //  TODO: verify ID
       // public static final int canCoderID = 1; //  TODO: verify CANCoder ID (May have to wait for Josh)
@@ -84,7 +84,7 @@ public final class Constants {
       public static final int driveMotorID = 4;
       public static final int angleMotorID = 2;
       public static final int canCoderID = 60;  //  configured
-      public static final double angleOffset = 333.545;
+      public static final double angleOffset = 154.511 + 180;
       // public static final int driveMotorID = 4; //  TODO: verify ID
       // public static final int angleMotorID = 2; //  TODO: verify ID
       // public static final int canCoderID = 2; //  TODO: verify CANCoder ID (May have to wait for Josh)
@@ -98,7 +98,7 @@ public final class Constants {
       public static final int driveMotorID = 10;
       public static final int angleMotorID = 1;
       public static final int canCoderID = 62; //configures
-      public static final double angleOffset = 121.289;
+      public static final double angleOffset = 121.289+180;
       // public static final int driveMotorID = 10;  //  TODO: verify ID
       // public static final int angleMotorID = 1; //  TODO: verify ID
       // public static final int canCoderID = 3; //  TODO: verify CANCoder ID (May have to wait for Josh)
@@ -112,7 +112,7 @@ public final class Constants {
       public static final int driveMotorID = 7;
       public static final int angleMotorID = 3;
       public static final int canCoderID = 61; // configured
-      public static final double angleOffset = 189.229;
+      public static final double angleOffset = 14.853;
       // public static final int driveMotorID = 7; //  TODO: verify ID
       // public static final int angleMotorID = 3; //  TODO: verify ID
       // public static final int canCoderID = 4; //  TODO: verify CANCoder ID (May have to wait for Josh)
