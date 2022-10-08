@@ -4,6 +4,8 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -46,11 +48,15 @@ public class SwerveModule {
     /* Angle Motor Config */
     mAngleMotor = new CANSparkMax(moduleConstants.angleMotorID, MotorType.kBrushless);
     mAngleEncoder = mAngleMotor.getEncoder();
+    mAngleMotor.setIdleMode(IdleMode.kBrake);
+
     configAngleMotor();
 
     /* Drive Motor Config */
     mDriveMotor = new CANSparkMax(moduleConstants.driveMotorID, MotorType.kBrushless);
     mDriveEncoder = mDriveMotor.getEncoder();
+    mAngleMotor.setIdleMode(IdleMode.kBrake);
+    
     configDriveMotor();
 
     lastAngle = getState().angle.getDegrees();
