@@ -35,30 +35,31 @@ public class RobotContainer {
   // private final int rotationAxis = XboxController.Axis.kRightX.value;
 
   // /* Driver Buttons */
-  // private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-  // private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value); 
-
   XboxController driver = new XboxController(0);
 
-  /* Subsystems */
-  // private final Swerve s_Swerve = new Swerve();
+  private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
+  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value); 
 
-  private TankDrive dt = new TankDrive();
+
+  /* Subsystems */
+  private final Swerve s_Swerve = new Swerve();
+
+  // private TankDrive dt = new TankDrive();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // s_Swerve.setDefaultCommand(
-    // new TeleopSwerve(
-    // s_Swerve,
-    // () -> driver.getRawAxis(translationAxis),
-    // () -> driver.getRawAxis(strafeAxis),
-    // () -> -driver.getRawAxis(rotationAxis),
-    // () -> robotCentric.get()));
+    s_Swerve.setDefaultCommand(
+      new TeleopSwerve(
+      s_Swerve,
+      () -> -driver.getLeftY(),
+      () -> driver.getLeftX(),
+      () -> driver.getRightX(),
+      () -> robotCentric.get()));
 
-    dt.setDefaultCommand(
-        new RunCommand(() -> dt.arcadeDrive(-driver.getLeftY(), driver.getRightX()), dt));
+    // dt.setDefaultCommand(
+    //     new RunCommand(() -> dt.arcadeDrive(-driver.getLeftY(), driver.getRightX()), dt));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -73,7 +74,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     /* Driver Buttons */
-    // zeroGyro.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
+    zeroGyro.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
   }
 
   /**
@@ -84,13 +85,13 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     // return new exampleAuto(s_Swerve);
-    // return new TeleopSwerve(
-    // s_Swerve,
-    // () -> 0.2, // TODO: how fast to move forward in auto
-    // () -> 0,
-    // () -> 0,
-    // () -> false)
-    // .withTimeout(7); // TODO: how long to move forward in auto
-    return new RunCommand(() -> dt.arcadeDrive(0.4, 0), dt).withTimeout(7);
+    return new TeleopSwerve(
+    s_Swerve,
+    () -> 0.2, // TODO: how fast to move forward in auto
+    () -> 0,
+    () -> 0,
+    () -> false)
+    .withTimeout(7); // TODO: how long to move forward in auto
+    // return new RunCommand(() -> dt.arcadeDrive(0.4, 0), dt).withTimeout(7);
   }
 }
