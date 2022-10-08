@@ -31,7 +31,7 @@ public final class Constants {
 
     /* Swerve Current Limiting */
     public static final int angleContinuousCurrentLimit = 25;
-    public static final int driveContinuousCurrentLimit = 30;
+    public static final int driveContinuousCurrentLimit = 25;
 
     /* Angle Motor PID Values */
     public static final double angleKP = 1.00;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
