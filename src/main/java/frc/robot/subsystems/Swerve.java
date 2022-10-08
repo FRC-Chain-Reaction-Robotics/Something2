@@ -24,6 +24,8 @@ public class Swerve extends SubsystemBase {
 	public Swerve() {
 		// gyro = new Pigeon2(Constants.Swerve.pigeonID);
 		// gyro.configFactoryDefault();
+
+		SmartDashboard.putData(m_field2d);
 		
 		gyro.calibrate();
 			

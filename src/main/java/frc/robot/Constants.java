@@ -24,14 +24,14 @@ public final class Constants {
 
     public static final SwerveDriveKinematics swerveKinematics =
         new SwerveDriveKinematics(
-            new Translation2d(wheelBase / 2.0, -trackWidth / 2.0),
             new Translation2d(wheelBase / 2.0, trackWidth / 2.0),
+            new Translation2d(wheelBase / 2.0, -trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, trackWidth / 2.0),
             new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
 
     /* Swerve Current Limiting */
     public static final int angleContinuousCurrentLimit = 25;
-    public static final int driveContinuousCurrentLimit = 35;
+    public static final int driveContinuousCurrentLimit = 30;
 
     /* Angle Motor PID Values */
     public static final double angleKP = 0.99;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
