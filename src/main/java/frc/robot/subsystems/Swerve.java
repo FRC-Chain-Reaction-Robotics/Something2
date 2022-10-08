@@ -8,6 +8,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -106,6 +107,8 @@ public class Swerve extends SubsystemBase {
 	public void periodic() {
 		swerveOdometry.update(getYaw(), getStates());
 		m_field2d.setRobotPose(getPose());
+		
+		SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
 
 		for (SwerveModule mod : mSwerveMods) {
 			SmartDashboard.putNumber(
