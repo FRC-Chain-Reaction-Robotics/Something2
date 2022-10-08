@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -18,17 +19,17 @@ import frc.robot.Constants;
 public class Swerve extends SubsystemBase {
 	public SwerveDriveOdometry swerveOdometry;
 	public SwerveModule[] mSwerveMods;
-	// public Pigeon2 gyro;
-	public AHRS gyro = new AHRS(SerialPort.Port.kMXP);
+	public Pigeon2 gyro;
+	// public AHRS gyro = new AHRS(SerialPort.Port.kMXP);
 	private final Field2d m_field2d = new Field2d();
 
 	public Swerve() {
-		// gyro = new Pigeon2(Constants.Swerve.pigeonID);
-		// gyro.configFactoryDefault();
+		gyro = new Pigeon2(Constants.Swerve.pigeonID);
+		gyro.configFactoryDefault();
 
 		SmartDashboard.putData(m_field2d);
 		
-		gyro.calibrate();
+		// gyro.calibrate();
 			
 		zeroGyro();
 
@@ -93,8 +94,8 @@ public class Swerve extends SubsystemBase {
 	}
 
 	public void zeroGyro() {
-		// gyro.setYaw(0);
-		gyro.reset();
+		gyro.setYaw(0);
+		// gyro.reset();
 	}
 
 	public Rotation2d getYaw() {
