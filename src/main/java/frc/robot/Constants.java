@@ -10,9 +10,10 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
   public static final double stickDeadband = 0.1;
 
+  public static final int intakeShooterID = 15;
   public static final class Swerve {
     public static final boolean invertGyro = true; // Always ensure Gyro is CCW+ CW-
-    public static final int pigeonID = 1;
+    public static final int pigeonID = 9;
     /* Drivetrain Constants */
     public static final double trackWidth = Units.inchesToMeters(21.5);
     public static final double wheelBase = Units.inchesToMeters(23.25);
@@ -70,11 +71,7 @@ public final class Constants {
       public static final int driveMotorID = 8;
       public static final int angleMotorID = 5;
       public static final int canCoderID = 14;  //  configured
-      public static final double angleOffset = 39.550;
-      // public static final int driveMotorID = 8; //  TODO: verify ID that the drive and angle motors are correct; Left is drive and Right is angle
-      // public static final int angleMotorID = 5; //  TODO: verify ID
-      // public static final int canCoderID = 1; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      // public static final double angleOffset = 144.22;  //  TODO: change offset (Wait for Josh)
+      public static final double angleOffset = 141.850 + 180;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -85,10 +82,6 @@ public final class Constants {
       public static final int angleMotorID = 2;
       public static final int canCoderID = 60;  //  configured
       public static final double angleOffset = 154.511 + 180;
-      // public static final int driveMotorID = 4; //  TODO: verify ID
-      // public static final int angleMotorID = 2; //  TODO: verify ID
-      // public static final int canCoderID = 2; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      // public static final double angleOffset = 109.07;  //  TODO: change offset (Wait for Josh)
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -98,11 +91,7 @@ public final class Constants {
       public static final int driveMotorID = 10;
       public static final int angleMotorID = 1;
       public static final int canCoderID = 62; //configures
-      public static final double angleOffset = 121.289+180;
-      // public static final int driveMotorID = 10;  //  TODO: verify ID
-      // public static final int angleMotorID = 1; //  TODO: verify ID
-      // public static final int canCoderID = 3; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      // public static final double angleOffset = 326.07;  //  TODO: change offset (Wait for Josh)
+      public static final double angleOffset = 126.123 + 180;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -112,11 +101,7 @@ public final class Constants {
       public static final int driveMotorID = 7;
       public static final int angleMotorID = 3;
       public static final int canCoderID = 61; // configured
-      public static final double angleOffset = 14.853;
-      // public static final int driveMotorID = 7; //  TODO: verify ID
-      // public static final int angleMotorID = 3; //  TODO: verify ID
-      // public static final int canCoderID = 4; //  TODO: verify CANCoder ID (May have to wait for Josh)
-      // public static final double angleOffset = 157.76;  //  TODO: change offset (Wait for Josh)
+      public static final double angleOffset = 6.416;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -139,15 +124,3 @@ public final class Constants {
             kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 }
-
-//  TODO: If you complete everything in this file,
-//  Check electrical issues
-//  Set the CANCoder IDs (google how to do that; it's very similar to setting ID for a TalonSRX (can google that too))
-  //  It would be in the Phoenix Tuner app.
-//  And then follow https://github.com/Team364/BaseFalconSwerve#setting-constants
-//  This will tell you how to do the stuff marked as "wait for Josh"
-//  Such as setting the CANCoder offset, PID tuning, etc.
-//  Also verify that any unmarked constants such as driveInvert, angleInvert, and canCoderInvert are correct
-  //  by changing them one by one to true and seeing if that fixes anything.
-//  I *might* be available on Discord, but trying asking the FRC discord for technical questions https://discord.com/invite/frc
-// Even Teleop should not work until you fix at least the CANCoder offsets, if not more.

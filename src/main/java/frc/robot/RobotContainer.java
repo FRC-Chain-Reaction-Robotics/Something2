@@ -5,16 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.*;
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
+import frc.robot.commands.TeleopSwerve;
+import frc.robot.subsystems.IntakeShooter;
+import frc.robot.subsystems.Swerve;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -38,12 +36,13 @@ public class RobotContainer {
   XboxController driver = new XboxController(0);
 
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-  
-  // private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+  XboxController operator = new XboxController(1);
+  //private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
+  IntakeShooter intakeShooter = new IntakeShooter();
 
   // private TankDrive dt = new TankDrive();
 
@@ -77,6 +76,17 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.whenPressed(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
+    var togglePnuematics = new JoystickButton(operator, XboxController.Button.kA.value);
+    var in = new JoystickButton(operator, XboxController.Button.kLeftBumper.value);
+    var out = new JoystickButton(operator, XboxController.Button.kRightBumper.value);
+
+    togglePnuematics.whenPressed(new InstantCommand(intakeShooter::togglePneumatics, intakeShooter));
+    in.whenPressed(new RunCommand(intakeShooter::intakeInward, intakeShooter))
+      .whenReleased(new RunCommand(intakeShooter::intakeStop, intakeShooter));
+    out.whenPressed(new RunCommand(intakeShooter::intakeOutwards, intakeShooter))
+      .whenReleased(new RunCommand(intakeShooter::intakeStop, intakeShooter));
+
   }
 
   /**
