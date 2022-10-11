@@ -35,7 +35,7 @@ public final class Constants {
     public static final int driveContinuousCurrentLimit = 25;
 
     /* Angle Motor PID Values */
-    public static final double angleKP = 1.00;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
+    public static final double angleKP = 2.00;  //  Let's try leaving the PID and FF tuning alone for today. It might even work as-is.
     public static final double angleKI = 0.0;
     public static final double angleKD = 0.0;
 
@@ -71,7 +71,7 @@ public final class Constants {
       public static final int driveMotorID = 8;
       public static final int angleMotorID = 5;
       public static final int canCoderID = 14;  //  configured
-      public static final double angleOffset = 141.850 + 180;
+      public static double angleOffset = 0;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -81,7 +81,7 @@ public final class Constants {
       public static final int driveMotorID = 4;
       public static final int angleMotorID = 2;
       public static final int canCoderID = 60;  //  configured
-      public static final double angleOffset = 154.511 + 180;
+      public static double angleOffset = 0;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -91,7 +91,7 @@ public final class Constants {
       public static final int driveMotorID = 10;
       public static final int angleMotorID = 1;
       public static final int canCoderID = 62; //configures
-      public static final double angleOffset = 126.123 + 180;
+      public static double angleOffset = 0;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }
@@ -101,7 +101,7 @@ public final class Constants {
       public static final int driveMotorID = 7;
       public static final int angleMotorID = 3;
       public static final int canCoderID = 61; // configured
-      public static final double angleOffset = 6.416;
+      public static double angleOffset = 0;
       public static final SwerveModuleConstants constants =
           new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
     }

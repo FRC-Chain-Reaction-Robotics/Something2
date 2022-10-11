@@ -5,9 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TeleopSwerve;
@@ -41,7 +43,7 @@ public class RobotContainer {
 
 
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve();
+  public Swerve s_Swerve = new Swerve();
   IntakeShooter intakeShooter = new IntakeShooter();
 
   // private TankDrive dt = new TankDrive();
@@ -55,9 +57,9 @@ public class RobotContainer {
       s_Swerve,
       () -> -driver.getLeftY(),
       () -> -driver.getLeftX(),
-      () -> -driver.getRightX(),
+      () -> -driver.getRightX(),  
       driver::getRightBumper,
-      () -> false));
+      () -> true));
 
     // dt.setDefaultCommand(
     //     new RunCommand(() -> dt.arcadeDrive(-driver.getLeftY(), driver.getRightX()), dt));
@@ -87,6 +89,10 @@ public class RobotContainer {
     out.whenPressed(new RunCommand(intakeShooter::intakeOutwards, intakeShooter))
       .whenReleased(new RunCommand(intakeShooter::intakeStop, intakeShooter));
 
+
+    var resetEncButton = new JoystickButton(driver, XboxController.Button.kX.value);
+    
+    resetEncButton.whenPressed(new InstantCommand(s_Swerve::resetEncoders, s_Swerve));
   }
 
   /**
@@ -97,13 +103,15 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     // return new exampleAuto(s_Swerve);
-    return new TeleopSwerve(
-      s_Swerve,
-      () -> 0.2,
-      () -> 0,
-      () -> 0,
-      () -> false,
-      () -> false)
-    .withTimeout(7);
+    // return new TeleopSwerve(
+    //   s_Swerve,
+    //   () -> 0.2,
+    //   () -> 0,
+    //   () -> 0,
+    //   () -> false,
+    //   () -> false)
+    // .withTimeout(7)
+    // .andThen(new PrintCommand("Auto Complete :)"));
+    return new PrintCommand("Hello World!");
   }
 }

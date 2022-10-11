@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.math.Conversions;
 import frc.robot.Constants;
 
 public class Swerve extends SubsystemBase {
@@ -27,7 +28,7 @@ public class Swerve extends SubsystemBase {
 		gyro = new Pigeon2(Constants.Swerve.pigeonID);
 		gyro.configFactoryDefault();
 
-		SmartDashboard.putData(m_field2d);
+		SmartDashboard.putData("Field", m_field2d);
 		
 		// gyro.calibrate();
 			
@@ -42,37 +43,51 @@ public class Swerve extends SubsystemBase {
 					new SwerveModule(2, Constants.Swerve.Mod2.constants),
 					new SwerveModule(3, Constants.Swerve.Mod3.constants)
 				};
+
+		// Constants.Swerve.Mod0.angleOffset = mSwerveMods[0].angleEncoder.getAbsolutePosition();
+		// Constants.Swerve.Mod1.angleOffset = mSwerveMods[1].angleEncoder.getAbsolutePosition();
+		// Constants.Swerve.Mod2.angleOffset = mSwerveMods[2].angleEncoder.getAbsolutePosition();
+		// Constants.Swerve.Mod3.angleOffset = mSwerveMods[3].angleEncoder.getAbsolutePosition() + 45;
 	}
 
 	public void drive(
 			Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, boolean slowMode) {
-		var x = translation.getX();
-		var y = translation.getY();
-		var theta = rotation;
+		// if (!fakeTank)
+		// {
+			var x = translation.getX();
+			var y = translation.getY();
+			var theta = rotation;
+	
+			if (slowMode)
+			{
+				x *= 0.25;
+				y *= 0.25;
+				theta *= 0.25;
+			}
+			
+			
+			SwerveModuleState[] swerveModuleStates =
+				Constants.Swerve.swerveKinematics.toSwerveModuleStates(
+						fieldRelative
+							? ChassisSpeeds.fromFieldRelativeSpeeds(
+										x, y, theta, getYaw())
+								: new ChassisSpeeds(x, y, theta));
+			
+			setModuleStates(swerveModuleStates, isOpenLoop);
+		// }
+		// else
+		// {
 
-		if (slowMode)
-		{
-			x *= 0.25;
-			y *= 0.25;
-			theta *= 0.25;
-		}
-		
-		
-		SwerveModuleState[] swerveModuleStates =
-			Constants.Swerve.swerveKinematics.toSwerveModuleStates(
-					fieldRelative
-						? ChassisSpeeds.fromFieldRelativeSpeeds(
-									x, y, theta, getYaw())
-							: new ChassisSpeeds(x, y, theta));
-		
-		setModuleStates(swerveModuleStates, isOpenLoop);
+		// }
+			
 	}
 
 	/* Used by SwerveControllerCommand in Auto */
 	public void setModuleStates(SwerveModuleState[] desiredStates, boolean isOpenLoop) {
 		SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, Constants.Swerve.maxSpeed);
-
+		
 		for (SwerveModule mod : mSwerveMods) {
+			SwerveModuleState.optimize(desiredStates[mod.moduleNumber], mod.getState().angle);
 			mod.setDesiredState(desiredStates[mod.moduleNumber], isOpenLoop);
 		};
 	}
@@ -109,7 +124,7 @@ public class Swerve extends SubsystemBase {
 		swerveOdometry.update(getYaw(), getStates());
 		m_field2d.setRobotPose(getPose());
 		
-		SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
+		// SmartDashboard.putNumber("Match Time", DriverStation.getMatchTime());
 
 		for (SwerveModule mod : mSwerveMods) {
 			SmartDashboard.putNumber(
@@ -121,5 +136,14 @@ public class Swerve extends SubsystemBase {
 			SmartDashboard.putData("Drive PID Controller", SwerveModule.mDrivePID);
 			SmartDashboard.putData("Angle PID Controller", SwerveModule.mAnglePID);
 		}
+	}
+
+	public void resetEncoders()
+	{
+		mSwerveMods[0].mAngleEncoder.setPosition(Conversions.degreesToNeo(Constants.Swerve.Mod0.angleOffset, Constants.Swerve.angleGearRatio));
+		mSwerveMods[1].mAngleEncoder.setPosition(Conversions.degreesToNeo(Constants.Swerve.Mod1.angleOffset, Constants.Swerve.angleGearRatio));
+		mSwerveMods[2].mAngleEncoder.setPosition(Conversions.degreesToNeo(Constants.Swerve.Mod2.angleOffset, Constants.Swerve.angleGearRatio));
+		mSwerveMods[3].mAngleEncoder.setPosition(Conversions.degreesToNeo(Constants.Swerve.Mod3.angleOffset, Constants.Swerve.angleGearRatio));
+		
 	}
 }

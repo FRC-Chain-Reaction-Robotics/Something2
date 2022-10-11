@@ -20,11 +20,11 @@ public class SwerveModule {
   public int moduleNumber;
   private double angleOffset;
   private double lastAngle;
-  private CANCoder angleEncoder;
+  // public CANCoder angleEncoder;
   private CANSparkMax mAngleMotor;
   private CANSparkMax mDriveMotor;
   private RelativeEncoder mDriveEncoder;
-  private RelativeEncoder mAngleEncoder;
+  public RelativeEncoder mAngleEncoder;
 
   public static PIDController mDrivePID =
       new PIDController(
@@ -42,12 +42,13 @@ public class SwerveModule {
     angleOffset = moduleConstants.angleOffset;
 
     /* Angle Encoder Config */
-    angleEncoder = new CANCoder(moduleConstants.cancoderID);
+    // angleEncoder = new CANCoder(moduleConstants.cancoderID);
     configAngleEncoder();
 
     /* Angle Motor Config */
     mAngleMotor = new CANSparkMax(moduleConstants.angleMotorID, MotorType.kBrushless);
     mAngleEncoder = mAngleMotor.getEncoder();
+    mAngleEncoder.setPosition(moduleConstants.angleOffset);
     mAngleMotor.setIdleMode(IdleMode.kBrake);
 
     configAngleMotor();
@@ -110,12 +111,13 @@ public class SwerveModule {
   }
 
   public Rotation2d getCanCoder() {
-    return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
+    // return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
+    return new Rotation2d(0);
   }
 
   private void configAngleEncoder() {
-    angleEncoder.configFactoryDefault();
-    angleEncoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
+    // angleEncoder.configFactoryDefault();
+    // angleEncoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
   }
 
   private void configAngleMotor() {
