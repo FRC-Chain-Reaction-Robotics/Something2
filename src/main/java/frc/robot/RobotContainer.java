@@ -112,6 +112,7 @@ public class RobotContainer {
     //   () -> false)
     // .withTimeout(7)
     // .andThen(new PrintCommand("Auto Complete :)"));
-    return new PrintCommand("Hello World!");
+    // return new PrintCommand("Hello World!");
+    return new PrintCommand("We do be codin from Replit doe");
   }
 }
