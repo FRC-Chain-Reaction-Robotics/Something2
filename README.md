@@ -1,4 +1,5 @@
 # SwerveBot-2022
+[![Run on Repl.it](https://replit.com/badge/github/FRC-Chain-Reaction-Robotics/SwerveBot-2022)](https://replit.com/new/github/FRC-Chain-Reaction-Robotics/SwerveBot-2022)
 ### Team 3512's swerve drive code for the 2022 offseason
 ### Written in Java utilizing WPILib's Command-Based structure
 ### Modified from Team 364's [BaseFalconSwerve](https://github.com/Team364/BaseFalconSwerve) project to utilize __NEO motors__ + __WPILib PID__ controllers.
