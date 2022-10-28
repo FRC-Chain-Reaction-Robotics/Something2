@@ -1,4 +1,4 @@
-run = "./gradlew build"
+run = "./gradlew assemble"
 hidden = ["**/*.class"]
 
 [packager]
