@@ -27,15 +27,13 @@ public class SwerveModule {
   public RelativeEncoder mAngleEncoder;
 
   public static PIDController mDrivePID =
-      new PIDController(
-          Constants.Swerve.driveKP, Constants.Swerve.driveKI, Constants.Swerve.driveKD);
+      new PIDController(Constants.Swerve.driveKP, Constants.Swerve.driveKI, Constants.Swerve.driveKD);
+  
   public static PIDController mAnglePID =
-      new PIDController(
-          Constants.Swerve.angleKP, Constants.Swerve.angleKI, Constants.Swerve.angleKD);
+      new PIDController(Constants.Swerve.angleKP, Constants.Swerve.angleKI, Constants.Swerve.angleKD);
 
   SimpleMotorFeedforward mDriveFeedforward =
-      new SimpleMotorFeedforward(
-          Constants.Swerve.driveKS, Constants.Swerve.driveKV, Constants.Swerve.driveKA);
+      new SimpleMotorFeedforward(Constants.Swerve.driveKS, Constants.Swerve.driveKV, Constants.Swerve.driveKA);
 
   public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants) {
     this.moduleNumber = moduleNumber;
@@ -117,7 +115,7 @@ public class SwerveModule {
 
   private void configAngleEncoder() {
     // angleEncoder.configFactoryDefault();
-    // angleEncoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
+    // angleEncoder.configAllSe`ttings(Robot.ctreConfigs.swerveCanCoderConfig);
   }
 
   private void configAngleMotor() {
